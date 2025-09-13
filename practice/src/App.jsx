@@ -1,89 +1,87 @@
-import ProductCard from "./ProductCard.jsx"
-import Card from "./Card.jsx"
-import BlogPost from "./BlogPost.jsx"
-
+import  {useState} from "react"
 function App() {
-  const productName = "Pen"
-  const price = 10
-  const isAvailable = true
+  const [count,setCount] = useState(0)
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
 
-  const Product = [
-    {
-      productName: "product1",
-      price: 3000,
-      isAvailable: true
-    }, {
-      productName: "product2",
-      price: 6000,
-      isAvailable: true
-    }, {
-      productName: "product2",
-      price: 6000,
-      isAvailable: true
-    }
-  ]
 
-  const Posts = [
-    {
-      id:1,
-      author: "usha",
-      title: "hello",
-      description: "abcd"
-    },
-    {
-      id:2,
-      author: "usha",
-      title: "hello",
-      description: "abcd"
-    },
-    {
-      id:3,
-      author: "usha",
-      title: "hello",
-      description: "abcd"
-    }
+  const [formData,setFormData]=useState({
+    email:"",
+    password:""
+  })
 
-  ]
+  const handleIncrement=()=>
+  {
+    setCount((prevCount)=>prevCount+1)
+    console.log(count)
+  }
+
+  const handleDecrement=()=>
+  {
+    setCount((prevCount)=>prevCount-1)
+    console.log(count)
+  }
+
+  const handleEmail=(event)=>
+  {
+    setEmail(event.target.value)
+
+  }
+  
+  const handlePassword=(event)=>
+  {
+    setPassword(event.target.value)
+
+  }
+  
+
+  const handleClick = () => {
+    console.log("the button is clicked")
+    alert("Hello ")
+  }
+
+  const handleChange = (event) => {
+  //   console.log(event.target.name)
+  //   console.log(event.target.value)
+  setFormData({
+    ...formData,
+    [event.target.name]:event.target.value
+  })
+
+  }
+  
+
+
+  const handleSubmit = () => {
+    alert(` email:${formData.email}\n password:${formData.password}\n"login succesful"`)
+  }
+
+
+
 
   return (
-    <>
-      <div className="c">
+    <div>
 
-        {/* <ProductCard a={productName} b={price} c={isAvailable} /> */}
-        {/* <ProductCard a={productName} b={price} c={!isAvailable} /> */}
-        {
+      <form onSubmit={handleSubmit}>
+        <p> enter you email</p>
+        <input type="text" name="email" placeholder="enter your email" onChange={handleChange} />
+        <p>enter the password</p>
+        <input type="pasword" name="password" placeholder="enter password" onChange={handleChange} />
+        <div>
+          <button type="submit">login </button>
 
+        </div>
+        
+      </form>
 
-          // Product.map((product) => (
-          //   <ProductCard
-          //     productName={product.productName}
-          //     productPrice={product.productPrice}
-          //     isAvailability={product.isAvailable}
-          //   />
+      <p>{count}</p>      
 
-          // ))
-
-         Posts.map((post) => (
-        <BlogPost
-        key={post.id}
-          author={post.author}
-          title={post.title}
-          description={post.description}
-        />
-
-        ))
-        }
+        <button onClick={handleIncrement}>increment</button>
+    
+      <button onClick={handleDecrement}>decrement</button>
 
 
-
-
-
-
-
-
-      </div>
-
-    </>
+    </div>
   )
 }
 

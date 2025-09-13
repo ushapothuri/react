@@ -1,0 +1,15 @@
+.CARD
+{
+     border:2px solid;
+    width: 200px;
+    height:300px;
+   margin: 20px;
+   padding: 20px;
+   text-align:centre;
+}
+.Name
+{
+    color: red;
+    font-size: large;
+    font-weight: 30px;
+}
